@@ -1,31 +1,32 @@
-# uarite
+# User-Agent parsed Right
 
-User-Agent parsing in Python has a long lineage. ua-parser is the official Python implementation of the ua-parser project, built around uap-core: the regex database extracted from BrowserScope's original parser and shared by implementations in many languages. user-agents wraps ua-parser with higher-level device and capability detection; its last release was in 2020. user-agent-parser is a separate implementation first released in 2022 and substantially updated in 2026, taking its own approach rather than building on uap-core. None of the three has further dependencies, but the regex databases weigh something: ua-parser installs at about 499 KB (531 KB with user-agents on top), user-agent-parser at 166 KB.
+User-Agent parsing in Python has a long lineage. ua-parser is the official Python implementation of the ua-parser project, built around uap-core: the regex database extracted from BrowserScope's original parser and shared by implementations in many languages. user-agents wraps ua-parser with higher-level device and capability detection but its last release was in 2020. user-agent-parser is a separate implementation first released in 2022 and substantially updated in 2026, taking its own approach rather than building on uap-core. None of the three has further dependencies, but the regex databases weigh something: ua-parser and user-agents each install about half a megabyte, user-agent-parser at 166 kB. We are merely 29 kB and yet perform better especially with the new crawlers of the AI boom.
+
+This module is another take on the same problem: a small, dependency-free, compact pure-Python parser. It returns structured classifications, but also the thing most applications eventually need: **a short human-readable pretty description**.
+
+Add to your project:
 
 ```sh
 uv add uarite
 ```
 
-This module is another take on the same problem: a small, dependency-free, compact pure-Python parser — 29 KB installed. It returns structured classifications, but also the thing most applications eventually need: a short human-readable description.
-
-It is particularly aimed at server-side analytics, where correctly recognizing crawlers and modern reduced User-Agents matters. It detects disguised crawlers, distinguishes AI/search/preview traffic, handles HarmonyOS and bots without calling them Android, resolves common device model codes and falls back to reasonable output even when all else fails.
+We correctly detect disguised crawlers, distinguish traffic of AI learning, search engines and social media share previews. We handle HarmonyOS and bots without calling them Android, resolving common device model codes, and fall back to reasonable output even when all else fails.
 
 ## Usage
 
 ```python
 from uarite import uaparse
 
-r = uaparse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-            "(KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36")
+r = uaparse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36")
 
 r.pretty    # "Chrome/152 Windows"
+r.engine    # "Chromium"
+r.os        # "Windows"
 r.kind      # "browser"
 r.bot       # ""
 r.url       # ""
 
-r = uaparse("Mozilla/5.0 (Linux; Android 13; Pixel 7) ... Chrome/134.0.6885.65 "
-            "Mobile Safari/537.36; compatible; facebookexternalhit/1.1; "
-            "+http://www.facebook.com/externalhit_uatext.php")
+r = uaparse("Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6885.65 Mobile Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php")
 
 r.pretty    # "Facebook"
 r.kind      # "preview"
@@ -40,9 +41,13 @@ r.url       # "http://www.facebook.com/externalhit_uatext.php"
 | Field    | Content                                                                                          |
 | -------- | ------------------------------------------------------------------------------------------------ |
 | `pretty` | Compact display string (below); `""` for empty/missing UAs, the raw UA when unrecognized         |
+| `engine` | `"Chromium"`, `"Gecko"`, `"Safari"`, `"ArkWeb"` (HarmonyOS), or `""`                             |
+| `os`     | `"Windows"`, `"macOS"`, `"Linux"`, `"iOS"`, `"Android"`, `"HarmonyOS"`, or `""`                  |
 | `bot`    | Crawler/previewer display name, or `""`                                                          |
 | `kind`   | `"browser"`, `"ai"`, `"search"`, `"preview"`, `"spider"`, or `""` (scripts/HTTP libraries)       |
 | `url`    | The crawler's info URL (`+https://…` pointer), or `""`; not part of `pretty` — link it in the UI |
+
+`os` is the major OS only, no version — meant for things like offering OS-specific downloads. `engine` is derived from the browser identity: every recognized browser is Chromium except Firefox/LibreWolf (Gecko) and Safari and all of iOS (Safari's engine is all Apple allows there); HarmonyOS browsers run ArkWeb. Both are left empty for crawlers: the browser and OS in a disguised crawler UA are part of the disguise.
 
 `kind` is `"browser"` for Mozilla-format UAs with no bot token, `"ai"` for training-data and AI-assistant fetchers (GPTBot, ClaudeBot, Google-Extended, ...), `"search"` for search-engine indexing (Googlebot, Bingbot, ...), `"preview"` for social link-preview fetchers (Facebook, WhatsApp, Slack, ...), `"spider"` for generic or unknown crawlers, and `""` for scripts and HTTP libraries.
 

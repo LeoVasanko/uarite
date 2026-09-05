@@ -11,6 +11,8 @@ from .clients import BROWSERS, SAMSUNG, SAMSUNG_SERIES
 @dataclass(frozen=True)
 class UA:
     pretty: str
+    engine: str
+    os: str
     bot: str
     kind: str
     url: str
@@ -93,6 +95,16 @@ def browser(ua: str) -> str:
     return ""
 
 
+#: Engines that differ from the Chromium default for recognized browsers.
+ENGINES = {"Firefox": "Gecko", "LibreWolf": "Gecko", "Safari": "Safari"}
+
+
+def engine(b: str) -> str:
+    """Engine for a ``Browser/major`` result; Chromium is the modern default."""
+    name = b.split("/")[0]
+    return ENGINES.get(name, "Chromium" if name else "")
+
+
 def os(ua: str) -> str:
     """Desktop OS name, or "" when not recognizable."""
     if "Windows NT" in ua:
@@ -136,14 +148,14 @@ def uaparse(ua: str) -> UA:
     would just flush the cache.
     """
     if not ua or not ua.strip() or ua in ("-", "null"):
-        return UA("", "", "", "")
+        return UA("", "", "", "", "", "")
     name, kind = bot(ua)
     if name:
         # The browser/OS in crawler UAs is a disguise; the bot identity is
-        # the relevant information.
+        # the relevant information, so ``engine`` and ``os`` are left empty.
         label = KIND_LABEL.get(kind, "") if name in LABELED else ""
         pretty = f"{name} ({label})" if label else name
-        return UA(pretty, name, kind, url(ua))
+        return UA(pretty, "", "", name, kind, url(ua))
     return _parse_client(ua)
 
 
@@ -160,19 +172,22 @@ def _parse_client(ua: str) -> UA:
         os_name = os(ua)
         if os_name and os_name not in pretty:
             pretty = f"{pretty} {os_name}"
-        return UA(pretty, "", "", "")
+        return UA(pretty, "", os_name, "", "", "")
 
     # HarmonyOS carries an "Android" compatibility token, so it must be
     # detected before Android.
     if "OpenHarmony" in ua or "HarmonyOS" in ua or "ArkWeb" in ua:
         b = browser(ua)
-        return UA(f"{b} HarmonyOS" if b else "HarmonyOS", "", "browser", "")
+        return UA(
+            f"{b} HarmonyOS" if b else "HarmonyOS", "ArkWeb", "HarmonyOS",
+            "", "browser", "",
+        )
 
     if "iPhone" in ua or "iPad" in ua:
         device = "iPhone" if "iPhone" in ua else "iPad"
         m = re.search(r"OS (\d+)", ua)
         pretty = f"{device} iOS {m.group(1)}" if m else device
-        return UA(pretty, "", "browser", "")
+        return UA(pretty, "Safari", "iOS", "", "browser", "")
 
     m = re.search(r"Android ([\d.]+)", ua)
     if m:
@@ -190,11 +205,12 @@ def _parse_client(ua: str) -> UA:
             if token and token not in ("wv", "Mobile", "Tablet"):
                 model = model_name(token)
             parts = [p for p in (b, model or f"Android {m.group(1)}") if p]
-        return UA(" ".join(parts), "", "browser", "")
+        return UA(" ".join(parts), engine(b), "Android", "", "browser", "")
 
     b = browser(ua)
-    pretty = f"{b} {os(ua)}".strip()
-    return UA(pretty or ua, "", "browser", "")
+    os_name = os(ua)
+    pretty = f"{b} {os_name}".strip()
+    return UA(pretty or ua, engine(b), os_name, "", "browser", "")
 
 
 def is_bot(ua: str) -> bool:
