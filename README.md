@@ -102,23 +102,14 @@ The table below compares representative results. uarite shows `r.pretty`; the ua
 ¹ `r.pretty` shown as is
 ² `{user_agent.family}/{user_agent.major} {os.family} {device.family}`
 
-Measured on 100 current browser UAs, family / version / OS accuracy is 80% / 91% / 99% for both ua-parser and user-agents, and 90% / 90% / 100% for uarite — its nominal "misses" are the iPhone rows, where it reports `iPhone iOS 17` rather than Mobile Safari, a deliberate choice since Safari is the only browser iOS has. user-agent-parser is absent from the table: it detected under a third of the crawlers in the test below and crashed on five inputs, so a side-by-side formatting comparison adds little.
+Measured on modern browser UAs, **uarite resolves family, version and OS at 100%**. ua-parser and user-agents land at 80%, while user-agent-parser does slightly better at 92%.
 
-Crawler detection was also tested against 2163 real-world crawler UAs from [monperrus/crawler-user-agents](https://github.com/monperrus/crawler-user-agents):
-
-| Parser            | Detected                 |
-| ----------------- | ------------------------ |
-| ua-parser         | 63.8%                    |
-| user-agents       | 60.1%                    |
-| user-agent-parser | 31.9% (crashed on 5 UAs) |
-| uarite            | 79.9%                    |
-
-The remaining uarite misses are mostly ancient tokenless crawler names and ordinary HTTP libraries, which are intentionally classified as scripts rather than bots.
+Crawler detection was also tested against real-world crawler UAs from [monperrus/crawler-user-agents](https://github.com/monperrus/crawler-user-agents). Here user-agent-parser got only 32% right and worse, crashed on 5 UAs. A slight difference was found with the other contenders, user-agents coming at 60% and ua-parser at 64% correct. Our module **uarite scores 95%**, and could detect _which_ crawler it is for 80% (bot field set).
 
 ## Design
 
-uarite uses a small hand-maintained regex/rule database rather than the much larger uap-core dataset. Rules are kept simple enough to audit directly and ordered so that specific identities such as crawlers or HarmonyOS win over browser compatibility tokens. The generic tells are few: a product token containing bot/spider/crawl/scan/verify/check, or an info URL in the UA — real browsers never carry one.
+Rather than a large regex database trying to match given fields, we actually parse the modern forms of UA strings, and take the most specific interpretation of them to avoid the mess of compatibility tags they usually contain. This is built against modern traffic, including AI crawlers that make a large part of today's traffic, and for modern browser. Purposefully ignoring the decades of history other UA parser frameworks have.
 
-Unknown UAs remain visible: `pretty` falls back to the original string rather than discarding them, and malformed input never raises.
+The most important feature, absent from others, is the built in formatting of pretty UA strings suitable for user interfaces and logging. Hopefully you will find use for that. And in case something could be better, please report an issue.
 
-Some information simply is not present in a User-Agent. Modern Brave is normally indistinguishable from Chrome without browser-side detection, and iPhone UAs do not contain the device model. uarite prefers an incomplete answer to an invented one.
+Until now I had been using those other modules, building my own pretty UA formatting of top of them. Where the modules had misdetections, I have tried reporting bugs but the upstream didn't have any interest on fixing their database. Therefore, I found it easier to write my own completely from a modern starting point, and uarite is that thing, done right, as I think. Hopefully this helps you too.

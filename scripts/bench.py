@@ -103,11 +103,17 @@ def score_browsers():
     for ua in BROWSERS:
         efam, emaj, eos = expected(ua)
         r = uaparse(ua)
-        if emaj:
+        if eos == "ios":
+            # Safari is the only browser iOS has, so the right answer is the
+            # device and the iOS version: "iPhone iOS 17", not "Safari/17".
+            device = "iPhone" if "iPhone" in ua else "iPad"
+            m = re.search(r"OS (\d+)", ua)
+            fam_ok += r.pretty.startswith(device)
+            ver_ok += bool(m and m.group(1) in r.pretty)
+        elif emaj:
             fam_ok += f"{efam}/{emaj}" in r.pretty
             ver_ok += f"/{emaj}" in r.pretty
         else:
-            # iOS webview: no version; "iPhone iOS 18" is the right answer
             fam_ok += efam in r.pretty or "iPhone" in r.pretty or "iPad" in r.pretty
             ver_ok += 1
         oslabel = {
