@@ -1,6 +1,6 @@
 # User-Agent parsed Right
 
-User-Agent parsing in Python has a long lineage. ua-parser is the official Python implementation of the ua-parser project, built around uap-core: the regex database extracted from BrowserScope's original parser and shared by implementations in many languages. user-agents wraps ua-parser with higher-level device and capability detection but its last release was in 2020. user-agent-parser is a separate implementation first released in 2022 and substantially updated in 2026, taking its own approach rather than building on uap-core. None of the three has further dependencies, but the regex databases weigh something: ua-parser and user-agents each install about half a megabyte, user-agent-parser at 166 kB. We are merely 29 kB and yet perform better especially with the new crawlers of the AI boom.
+User-Agent parsing in Python has a long lineage. ua-parser is the official Python implementation of the ua-parser project, built around uap-core: the regex database extracted from BrowserScope's original parser and shared by implementations in many languages. user-agents wraps ua-parser with higher-level device and capability detection but its last release was in 2020. user-agent-parser is a separate implementation first released in 2022 and substantially updated in 2026, taking its own approach rather than building on uap-core. None of the three has further dependencies, but the regex databases weigh something: ua-parser and user-agents each install about half a megabyte, while user-agent-parser installs at 166 kB. We are merely 29 kB and yet perform better especially with the new crawlers of the AI boom.
 
 This module is another take on the same problem: a small, dependency-free, compact pure-Python parser. It returns structured classifications, but also the thing most applications eventually need: **a short human-readable pretty description**.
 
@@ -10,7 +10,7 @@ Add to your project:
 uv add uarite
 ```
 
-We correctly detect disguised crawlers, distinguish traffic of AI learning, search engines and social media share previews. We handle HarmonyOS and bots without calling them Android, resolving common device model codes, and fall back to reasonable output even when all else fails.
+We correctly detect disguised crawlers and distinguish traffic of AI learning from search engines and social media share previews. We handle HarmonyOS and bots without calling them Android, resolve common device model codes to phone models like Galaxy Z Fold8, and fall back to reasonable output even when all else fails.
 
 ## Usage
 
@@ -36,46 +36,30 @@ r.url       # "http://www.facebook.com/externalhit_uatext.php"
 
 ## Output
 
-`uaparse(ua)` returns a frozen `UA` dataclass:
+`uaparse(ua)` returns a `UA` dataclass with string values:
 
-| Field    | Content                                                                                          |
-| -------- | ------------------------------------------------------------------------------------------------ |
-| `pretty` | Compact display string (below); `""` for empty/missing UAs, the raw UA when unrecognized         |
-| `engine` | `"Chromium"`, `"Gecko"`, `"Safari"`, `"ArkWeb"` (HarmonyOS), or `""`                             |
-| `os`     | `"Windows"`, `"macOS"`, `"Linux"`, `"iOS"`, `"Android"`, `"HarmonyOS"`, or `""`                  |
-| `bot`    | Crawler/previewer display name, or `""`                                                          |
-| `kind`   | `"browser"`, `"ai"`, `"search"`, `"preview"`, `"spider"`, or `""` (scripts/HTTP libraries)       |
-| `url`    | The crawler's info URL (`+https://…` pointer), or `""`; not part of `pretty` — link it in the UI |
+| Field  | Content                                                                                           |
+| ------ | ------------------------------------------------------------------------------------------------- |
+| pretty | Compact display string (below); empty for empty/missing UAs, the raw UA when unrecognized         |
+| engine | Chromium, Gecko, Safari, ArkWeb (HarmonyOS), or empty                                             |
+| os     | Windows, macOS, Linux, iOS, Android, HarmonyOS, or empty                                          |
+| bot    | Crawler/previewer display name, or empty                                                          |
+| kind   | browser, ai, search, preview, spider, or empty (scripts/HTTP libraries)                           |
+| url    | The crawler's info URL (the +https://… pointer), or empty; not part of pretty — link it in the UI |
 
-`os` is the major OS only, no version — meant for things like offering OS-specific downloads. `engine` is derived from the browser identity: every recognized browser is Chromium except Firefox/LibreWolf (Gecko) and Safari and all of iOS (Safari's engine is all Apple allows there); HarmonyOS browsers run ArkWeb. Both are left empty for crawlers: the browser and OS in a disguised crawler UA are part of the disguise.
+The pretty field is intended to be shown in UI and logging as a conscise description. The url may be included as a link on that text when found, mainly to allow finding out what the bot is used for.
 
-`kind` is `"browser"` for Mozilla-format UAs with no bot token, `"ai"` for training-data and AI-assistant fetchers (GPTBot, ClaudeBot, Google-Extended, ...), `"search"` for search-engine indexing (Googlebot, Bingbot, ...), `"preview"` for social link-preview fetchers (Facebook, WhatsApp, Slack, ...), `"spider"` for generic or unknown crawlers, and `""` for scripts and HTTP libraries.
+The engine and os fields are meant for broad selection of operation, like which OS installer to offer, or which compatibility hacks are needed. Operating System is the major OS only, no version. Every recognized browser is Chromium except Firefox derivatives (Gecko), Safari (macOS, anything on iOS) and Harmony Browser (ArkWeb).
 
-`pretty` is intended to be shown directly:
+The kind field describes our detection of visitor type: browser for actual browsers, ai for training data collectors (GPTBot, ClaudeBot, Google-Extended, ...), search for search-engine indexing (Googlebot, Bingbot, ...), preview for social link previews (Facebook, WhatsApp, Slack, ...), spider for generic or unknown crawlers, and empty for scripts and HTTP libraries. Any value other than browser means the visitor is automated.
 
-- Desktop: `Chrome/152 Windows`, `Safari/18 macOS`
-- iPhone/iPad: `iPhone iOS 17` — the device and iOS version, not Safari (the only browser iOS has)
-- Android: `Chrome/118 Pixel 6`, or `Chrome/152 Android` when the device is unknown
-- Crawlers: `GPTBot (AI)`, `Googlebot (search)`, `Facebook` — the kind suffix appears only where a provider runs crawlers of more than one kind; single-kind providers stay plain
-- Scripts: `python-requests/2.32.5`, `pip/24.3.1 Linux`
+We deliberately ignore masquerading as browser-compatible (common with crawlers) and fake information like the frozen Android 10; K values that appear on all new mobiles, when the UA provides extra hints of it being something else. These are not reported as engine, os etc., and the pretty field aims to accurately explain only what it actually is.
 
-Chrome's reduced Android UA reports the frozen values `Android 10; K`; neither is real device information, so uarite deliberately reports simply `Android`. HarmonyOS compatibility strings are similarly recognized before their misleading Android tokens.
-
-## Performance
-
-All compared parsers cache repeated User-Agents, making cache hits effectively free. The useful difference is therefore the first parse of a new string.
-
-In our benchmarks, uncached uarite parses take roughly **3–7 µs**. user-agent-parser is in the same general range at **~7 µs**, while the pure-Python ua-parser/user-agents path takes roughly **130–250 µs**.
-
-The cache strategies differ in ways that matter under adversarial traffic. uarite caches only browser/client results (1024-entry LRU): crawlers tend to be unique and would otherwise evict the repeating UAs where caching is useful. user-agent-parser's 512-entry LRU lets a bot storm evict browsers, and user-agents' 200-entry dict clears entirely when full.
+Obviously all information is limited to that of the User-Agent string given. There are crawlers that masquerade using exact browser strings, or even strings indicating other crawlers than what they actually are, to bypass website protections (e.g. Google bots can often avoid paywalls given to ordinary browsers). You will require other methods to detect them because UA based detection is impossible.
 
 ## Accuracy
 
-The main difference is not how many fields can be returned, but what the parser believes the User-Agent actually says.
-
-For example, reduced Chrome does not really tell us that the device is named `K` or that it runs Android 10; an Android compatibility token does not make HarmonyOS Android; and a Facebook or Google crawler containing a plausible Chrome UA is still a crawler, not a Chrome visitor.
-
-The table below compares representative results. uarite shows `r.pretty`; the ua-parser display strings are assembled from its structured output for comparison. user-agents is omitted: it shares the ua-parser backend and returns virtually identical data in a slightly different structure.
+The table below compares various representative User-Agent formats with the two main contenders. We note that user-agents produces virtually identical results to ua-parser and is thus left out from the comparison, like other worse performing parsers.
 
 | Case                         | uarite¹                   | ua-parser²                                    |
 | ---------------------------- | ------------------------- | --------------------------------------------- |
@@ -98,18 +82,24 @@ The table below compares representative results. uarite shows `r.pretty`; the ua
 | AhrefsBot                    | AhrefsBot                 | AhrefsBot/7 Spider                            |
 | python-requests              | python-requests/2.32.5    | Python Requests/2                             |
 
-❌ marks an incorrect browser, OS, or device interpretation.
-¹ `r.pretty` shown as is
-² `{user_agent.family}/{user_agent.major} {os.family} {device.family}`
+- ❌ marks an incorrect browser, OS, or device interpretation.
+- ¹ r.pretty shown as is
+- ² {user_agent.family}/{user_agent.major} {os.family} {device.family}
 
 Measured on modern browser UAs, **uarite resolves family, version and OS at 100%**. ua-parser and user-agents land at 80%, while user-agent-parser does slightly better at 92%.
 
 Crawler detection was also tested against real-world crawler UAs from [monperrus/crawler-user-agents](https://github.com/monperrus/crawler-user-agents). Here user-agent-parser got only 32% right and worse, crashed on 5 UAs. A slight difference was found with the other contenders, user-agents coming at 60% and ua-parser at 64% correct. Our module **uarite scores 95%**, and could detect _which_ crawler it is for 80% (bot field set).
 
+## Performance
+
+All compared parsers cache repeated User-Agents, making cache hits effectively free. The useful difference is therefore the first parse of a new string.
+
+In our benchmarks, uncached uarite parses take roughly **3–7 µs**. user-agent-parser is in the same general range at **~7 µs**, while the pure-Python ua-parser/user-agents path takes roughly **130–250 µs**, which can be a considerable slowdown.
+
 ## Design
 
-Rather than a large regex database trying to match given fields, we actually parse the modern forms of UA strings, and take the most specific interpretation of them to avoid the mess of compatibility tags they usually contain. This is built against modern traffic, including AI crawlers that make a large part of today's traffic, and for modern browser. Purposefully ignoring the decades of history other UA parser frameworks have.
+Rather than a large regex database trying to match any possible UA to given fields, we actually parse the modern forms of UA strings, and take the most specific interpretation of them to avoid the mess of compatibility tags they usually contain. This is built against modern traffic, including the AI crawlers that make up a large part of today's traffic, and for modern browsers — purposefully ignoring the decades of history other UA parser frameworks carry.
 
-The most important feature, absent from others, is the built in formatting of pretty UA strings suitable for user interfaces and logging. Hopefully you will find use for that. And in case something could be better, please report an issue.
+The most important feature, absent from others, are the built-in pretty UA strings suitable for user interfaces and logging. Hopefully you will find use for that. And in case something could be better, please report an issue.
 
-Until now I had been using those other modules, building my own pretty UA formatting of top of them. Where the modules had misdetections, I have tried reporting bugs but the upstream didn't have any interest on fixing their database. Therefore, I found it easier to write my own completely from a modern starting point, and uarite is that thing, done right, as I think. Hopefully this helps you too.
+Until now I had been using those other modules, building my own pretty UA formatting on top of them. Where the modules had misdetections, I have tried reporting bugs but the upstream didn't have any interest in fixing their database. Therefore, I found it easier to write my own completely from a modern starting point, and uarite is that thing, done right, as I think. Hopefully this helps you too.
