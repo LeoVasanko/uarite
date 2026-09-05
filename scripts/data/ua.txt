@@ -1,0 +1,316 @@
+ALittle Client
+Go-http-client/1.1
+Go-http-client/2.0
+Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.6677.221 Mobile Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.7874.237 Mobile Safari/537.36; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.5636.120 Mobile Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.5904.94 Mobile Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6999.179 Mobile Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Chrome/136.0.3622.183 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.1714.57 Mobile Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.2331.116 Mobile Safari/537.36; compatible; Twitterbot/1.0
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.3871.45 Mobile Safari/537.36; compatible; Bytespider; +https://zhanzhang.toutiao.com/
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6885.65 Mobile Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.179.134 Mobile Safari/537.36; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.304.223 Mobile Safari/537.36; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.2633.116 Mobile Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.3245.171 Mobile Safari/537.36; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.675.120 Mobile Safari/537.36; compatible; ClaudeBot/1.0; +claudebot@anthropic.com
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/136.0.5265.172 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user) Chrome/109.0.142.149 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1) Chrome/147.0.8581.235 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.8358.226 Mobile Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.2863.23 Mobile Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.581.205 Mobile Safari/537.36; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.7679.116 Mobile Safari/537.36; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.4412.199 Mobile Safari/537.36; compatible; TelegramBot/1.0
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.1359.77 Mobile Safari/537.36; compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.3533.159 Mobile Safari/537.36; compatible; Twitterbot/1.0
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.1665.247 Mobile Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot) Chrome/148.0.5629.104 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-G930P; Build/AP4A.190211.226) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.1587.89 Mobile Safari/537.36 EdgA/110.0.1587.89
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.6752.19 Mobile Safari/537.36; compatible; Twitterbot/1.0
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.456.90 Mobile Safari/537.36; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.562.77 Mobile Safari/537.36; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Applebot/0.1; +http://www.apple.com/go/applebot) Chrome/130.0.4812.112 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/147.0.2792.237 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com) Chrome/130.0.6971.196 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot) Chrome/130.0.6187.117 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Chrome/147.0.8778.3 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 15; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot) Chrome/128.0.7214.102 Mobile Safari/537.36
+Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; https://zhanzhang.toutiao.com/)
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.7922.173 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:121.12) Gecko/20100101 Firefox/121.12; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:127.15) Gecko/20100101 Firefox/127.15; compatible; Bytespider; +https://zhanzhang.toutiao.com/
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.7) Gecko/20100101 Firefox/133.7; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:149.4) Gecko/20100101 Firefox/149.4; compatible; ClaudeBot/1.0; +claudebot@anthropic.com
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.6) Gecko/20100101 Firefox/78.6; compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.1781.181 Safari/537.36; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.7456.176 Safari/537.36 Edg/114.0.7456.176; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.4134.99 Safari/537.36; compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6701.62 Safari/537.36; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.7297.17 Safari/537.36; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 (compatible; meta-externalagent/1.1 (+https://developers.facebook.com/docs/sharing/webmasters/crawler))
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 CloudflareWebScanner/1.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.4253.212 Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.393.116 Safari/537.36; compatible; GPTBot/1.2; +https://openai.com/gptbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot) Chrome/131.0.5818.195 Safari/537.36 Edg/131.0.5818.195
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Applebot/0.1; +http://www.apple.com/go/applebot) Chrome/128.0.2374.13 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Chrome/122.0.8582.72 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Chrome/122.0.6224.91 Safari/537.36 Edg/122.0.6224.91
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot) Chrome/85.0.796.31 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot) Chrome/147.0.9065.204 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/148.0.2316.113 Safari/537.36 Edg/148.0.2316.113
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6_1; rv:119.0) Gecko/20100101 Firefox/119.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15; compatible; Bytespider; +https://zhanzhang.toutiao.com/
+Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6_7) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot) Version/19.1 Safari/605.1.15
+Mozilla/5.0 (Macintosh; Intel Mac OS X 13_6_7) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com) Version/18.1 Safari/605.1.15
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:127.8) Gecko/20100101 Firefox/127.8; compatible; TelegramBot/1.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:132.11) Gecko/20100101 Firefox/132.11; compatible; Twitterbot/1.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:133.5) Gecko/20100101 Firefox/133.5; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:149.5) Gecko/20100101 Firefox/149.5; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:78.16) Gecko/20100101 Firefox/78.16; compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.9070.130 Safari/537.36 Edg/128.0.9070.130; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.610.178 Safari/537.36; compatible; WhatsApp/10.0.2.1
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Chrome/151.0.779.246 Safari/537.36 Edg/151.0.779.246
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/133.0.153.92 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1) Chrome/131.0.7140.164 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler) Chrome/118.0.8850.224 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.3 Safari/605.1.15; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.3295.40 Safari/537.36; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.1535.25 Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.6540.70 Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot) Chrome/126.0.8218.208 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/128.0.3723.179 Safari/537.36 Edg/128.0.3723.179
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Chrome/133.0.4354.13 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com) Chrome/131.0.7882.202 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user) Chrome/131.0.2380.151 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot) Chrome/148.0.6827.81 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6_1) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user) Version/18.3 Safari/605.1.15
+Mozilla/5.0 (Macintosh; Intel Mac OS X 15_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.7 Safari/605.1.15; compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 (Phone; OpenHarmony 6.1; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36  ArkWeb/6.1.0.120 Mobile HuaweiBrowser/6.1.6.310
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.6691.81 Safari/537.36; compatible; TelegramBot/1.0
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.4841.30 Safari/537.36; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.7168.194 Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.2240.231 Safari/537.36; compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.7895.118 Safari/537.36; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.1055.174 Safari/537.36 Edg/133.0.1055.174; compatible; Twitterbot/1.0
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.2238.87 Safari/537.36 Edg/133.0.2238.87; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.3329.205 Safari/537.36; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 (compatible; meta-externalagent/1.1 (+https://developers.facebook.com/docs/sharing/webmasters/crawler))
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.7922.34 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.1090.96 Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.7074.69 Safari/537.36; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/114.0.3989.223 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com) Chrome/151.0.8801.61 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Chrome/124.0.6057.104 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Chrome/130.0.4938.98 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots) Chrome/134.0.4631.6 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0) Chrome/114.0.1358.24 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1) Chrome/133.0.3192.3 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.5) Gecko/20100101 Firefox/105.5; compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0; compatible; GPTBot/1.2; +https://openai.com/gptbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.14) Gecko/20100101 Firefox/121.14; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.13) Gecko/20100101 Firefox/127.13; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.5) Gecko/20100101 Firefox/127.5; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.2) Gecko/20100101 Firefox/132.2; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.1) Gecko/20100101 Firefox/133.1; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.14) Gecko/20100101 Firefox/133.14; compatible; ClaudeBot/1.0; +claudebot@anthropic.com
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.13) Gecko/20100101 Firefox/143.13; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.11) Gecko/20100101 Firefox/149.11; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:154.0) Gecko/20100101 Firefox/154.0
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.4) Gecko/20100101 Firefox/78.4; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler
+Mozilla/5.0 (Windows NT 10.0; rv:105.8) Gecko/20100101 Firefox/105.8; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (Windows NT 10.0; rv:121.4) Gecko/20100101 Firefox/121.4; compatible; Twitterbot/1.0
+Mozilla/5.0 (Windows NT 10.0; rv:132.17) Gecko/20100101 Firefox/132.17; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot
+Mozilla/5.0 (Windows NT 10.0; rv:143.9) Gecko/20100101 Firefox/143.9; compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 (Windows NT 10.0; rv:149.2) Gecko/20100101 Firefox/149.2; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (Windows NT 10.0; rv:150.11) Gecko/20100101 Firefox/150.11; compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.2208.117 Safari/537.36; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.4903.6 Safari/537.36; compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.2677.151 Safari/537.36; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot) Chrome/109.0.1953.144 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Chrome/134.0.7068.89 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot) Chrome/133.0.8680.93 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/124.0.1422.145 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com) Chrome/122.0.8976.2 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com) Chrome/151.0.7263.231 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot) Chrome/136.0.6556.236 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot) Chrome/91.0.2098.213 Safari/537.36
+Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1) Chrome/91.0.9073.141 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.8349.207 Safari/537.36; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.870.128 Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.2718.190 Safari/537.36 Edg/114.0.2718.190; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.673.111 Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.8103.201 Safari/537.36 Edg/122.0.8103.201; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6793.243 Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.6864.83 Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.671.204 Safari/537.36; compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.2787.208 Safari/537.36; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.763.59 Safari/537.36; compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot) Chrome/133.0.7999.49 Safari/537.36 Edg/133.0.7999.49
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Chrome/124.0.3933.247 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot) Chrome/109.0.3436.159 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot) Chrome/134.0.8299.205 Safari/537.36 Edg/134.0.8299.205
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +Claude-User@anthropic.com) Chrome/120.0.164.234 Safari/537.36 Edg/120.0.164.234
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user) Chrome/131.0.4832.111 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Chrome/122.0.2110.32 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot) Chrome/148.0.7521.199 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot) Chrome/114.0.80.121 Safari/537.36
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots) Chrome/118.0.7057.134 Safari/537.36 Edg/118.0.7057.134
+Mozilla/5.0 (X11; Linux x86_64; rv:121.16) Gecko/20100101 Firefox/121.16; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots
+Mozilla/5.0 (X11; Linux x86_64; rv:121.9) Gecko/20100101 Firefox/121.9; compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 (X11; Linux x86_64; rv:127.8) Gecko/20100101 Firefox/127.8; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (X11; Linux x86_64; rv:133.16) Gecko/20100101 Firefox/133.16; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (X11; Linux x86_64; rv:149.5) Gecko/20100101 Firefox/149.5; compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.8500.64 Safari/537.36; compatible; Bytespider; +https://zhanzhang.toutiao.com/
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.8365.158 Safari/537.36 Edg/134.0.8365.158; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot) Chrome/128.0.4931.11 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot) Chrome/147.0.8835.247 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Chrome/136.0.1808.113 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot) Chrome/136.0.3467.118 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot) Chrome/131.0.7648.87 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user) Chrome/133.0.1362.30 Safari/537.36
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1) Chrome/120.0.4740.223 Safari/537.36 Edg/120.0.4740.223
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:105.13) Gecko/20100101 Firefox/105.13; compatible; GPTBot/1.4; +https://openai.com/gptbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.5) Gecko/20100101 Firefox/121.5; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.11) Gecko/20100101 Firefox/127.11; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.17) Gecko/20100101 Firefox/127.17; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:132.7) Gecko/20100101 Firefox/132.7; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:133.5) Gecko/20100101 Firefox/133.5; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:149.6) Gecko/20100101 Firefox/149.6; compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:149.7) Gecko/20100101 Firefox/149.7; compatible; GPTBot/1.2; +https://openai.com/gptbot
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:150.1) Gecko/20100101 Firefox/150.1; compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:78.8) Gecko/20100101 Firefox/78.8; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)
+Mozilla/5.0 (compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot)
+Mozilla/5.0 (compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot)
+Mozilla/5.0 (compatible; Applebot/0.1; +http://www.apple.com/go/applebot)
+Mozilla/5.0 (compatible; Bytespider; +https://zhanzhang.toutiao.com/)
+Mozilla/5.0 (compatible; ChatGPT-User/1.0; +https://openai.com/bot)
+Mozilla/5.0 (compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot)
+Mozilla/5.0 (compatible; Claude-User/1.0; +Claude-User@anthropic.com)
+Mozilla/5.0 (compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)
+Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)
+Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+Mozilla/5.0 (compatible; GPTBot/1.4; +https://openai.com/gptbot)
+Mozilla/5.0 (compatible; Google-Extended/1.0; +http://www.google.com/bot.html)
+Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+Mozilla/5.0 (compatible; GrokBot/1.0; +https://x.ai/grokbot)
+Mozilla/5.0 (compatible; LinkedInBot/1.0; +http://www.linkedin.com)
+Mozilla/5.0 (compatible; MJ12bot/v2.0.5; http://mj12bot.com/)
+Mozilla/5.0 (compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot)
+Mozilla/5.0 (compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user)
+Mozilla/5.0 (compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)
+Mozilla/5.0 (compatible; Reflectionbot/1.0; +https://reflection.ai/bot)
+Mozilla/5.0 (compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)
+Mozilla/5.0 (compatible; TelegramBot/1.0)
+Mozilla/5.0 (compatible; Twitterbot/1.0)
+Mozilla/5.0 (compatible; WP-Safe-Scanner/1.0)
+Mozilla/5.0 (compatible; WhatsApp/10.0.2.1)
+Mozilla/5.0 (compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php)
+Mozilla/5.0 (compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler)
+Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/19.7 Mobile/15E148 Safari/604.1; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot) Version/19.1 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html) Version/16.6 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.1229.179 Mobile Safari/537.36; compatible; Bytespider; +https://zhanzhang.toutiao.com/
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.903.10 Mobile Safari/537.36; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.4431.64 Mobile Safari/537.36; compatible; GPTBot/1.2; +https://openai.com/gptbot
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.4849.17 Mobile Safari/537.36; compatible; TelegramBot/1.0
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.672.19 Mobile Safari/537.36; compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.790.154 Mobile Safari/537.36; compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +Claude-User@anthropic.com) Chrome/151.0.5552.152 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Discordbot/2.0; +https://discordapp.com) Chrome/131.0.8856.25 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot) Version/16.5 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko; compatible; TelegramBot/1.0) Version/18.6 Mobile/15E148 Safari/604.1
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Mobile/15E148 Safari/604.1; compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/19.0 Mobile/15E148 Safari/604.1; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.8733.214 Mobile Safari/537.36; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.7561.171 Mobile Safari/537.36; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/) Chrome/128.0.6985.201 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot) Chrome/131.0.3919.233 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user) Chrome/118.0.5358.73 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko; compatible; meta-externalagent/1.1; +https://developers.facebook.com/docs/sharing/webmasters/crawler) Chrome/122.0.3316.88 Mobile Safari/537.36
+Mozilla/5.0 (iPhone; CPU iPhone OS 18_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1; compatible; TelegramBot/1.0
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Applebot/0.1; +http://www.apple.com/go/applebot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0; +Claude-User@anthropic.com
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ClaudeBot/1.0; +claudebot@anthropic.com
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Discordbot/2.0; +https://discordapp.com
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.2; +https://openai.com/gptbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Google-Extended/1.0; +http://www.google.com/bot.html
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GrokBot/1.0; +https://x.ai/grokbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; LinkedInBot/1.0; +http://www.linkedin.com
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; TelegramBot/1.0
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Twitterbot/1.0
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; WhatsApp/10.0.2.1
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amazonbot/0.1; +https://developer.amazon.com/support/amazonbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Amzn-SearchBot/1.0; +https://developer.amazon.com/support/amazonbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Applebot/0.1; +http://www.apple.com/go/applebot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Bytespider; +https://zhanzhang.toutiao.com/)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ChatGPT-User/1.0; +https://openai.com/bot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +Claude-User@anthropic.com)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +https://www.anthropic.com/claude-user)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Discordbot/2.0; +https://discordapp.com)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Google-Extended/1.0; +http://www.google.com/bot.html)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GrokBot/1.0; +https://x.ai/grokbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; LinkedInBot/1.0; +http://www.linkedin.com)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.3; +https://openai.com/searchbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Perplexity-User/1.0; +https://perplexity.ai/perplexity-user)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Slackbot-LinkExpanding/1.0; +https://api.slack.com/robots)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; TelegramBot/1.0)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Twitterbot/1.0)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; WhatsApp/10.0.2.1)
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/136.0.0.0 Safari/537.36
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/136.0.0.0 Safari/537.36 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php)
+crusader-worker/1.0
+null
+pip/24.3.1 {"ci":null,"cpu":"x86_64","implementation":{"name":"CPython","version":"3.11.9"},"installer":{"name":"pip","version":"24.3.1"},"openssl_version":"OpenSSL 3.0.13 30 Jan 2024","python":"3.11.9","setuptools_version":"75.6.0","system":{"name":"Linux","release":"6.8.0"}}
+python-httpx/0.28.1
+python-requests/2.25.1
+python-requests/2.32.5
+sibsweb-verifier/0.1 (+mailto:ptwebcrawler@techremotehub.com)

@@ -1,0 +1,100 @@
+"""Browser and device-model tables."""
+
+#: (UA token, display name) checked in order; first hit wins, so
+#: overlapping tokens go from most to least specific.
+BROWSERS = (
+    ("HuaweiBrowser", "HuaweiBrowser"),
+    ("EdgA", "Edge"),
+    ("Edg", "Edge"),
+    ("OPR", "Opera"),
+    ("Vivaldi", "Vivaldi"),
+    ("YaBrowser", "Yandex"),
+    ("Brave", "Brave"),
+    ("Whale", "Whale"),
+    ("SamsungBrowser", "Samsung Internet"),
+    ("MiuiBrowser", "Mi Browser"),
+    ("UCBrowser", "UC Browser"),
+    ("QQBrowser", "QQ Browser"),
+    ("DuckDuckGo", "DuckDuckGo"),
+    ("LibreWolf", "LibreWolf"),
+    ("Firefox", "Firefox"),
+    ("Chrome", "Chrome"),
+    ("CriOS", "Chrome"),
+    ("FxiOS", "Firefox"),
+)
+
+#: Samsung model codes (without the trailing region/carrier letter) to
+#: marketing names; breadth over precision.
+SAMSUNG = {
+    # Galaxy S (SM-G era)
+    "SM-G930": "Galaxy S7",
+    "SM-G935": "Galaxy S7 Edge",
+    "SM-G950": "Galaxy S8",
+    "SM-G955": "Galaxy S8+",
+    "SM-G960": "Galaxy S9",
+    "SM-G965": "Galaxy S9+",
+    "SM-G970": "Galaxy S10e",
+    "SM-G973": "Galaxy S10",
+    "SM-G975": "Galaxy S10+",
+    "SM-G977": "Galaxy S10 5G",
+    "SM-G980": "Galaxy S20",
+    "SM-G981": "Galaxy S20",
+    "SM-G985": "Galaxy S20+",
+    "SM-G986": "Galaxy S20+",
+    "SM-G988": "Galaxy S20 Ultra",
+    "SM-G990": "Galaxy S21 FE",
+    "SM-G991": "Galaxy S21",
+    "SM-G996": "Galaxy S21+",
+    "SM-G998": "Galaxy S21 Ultra",
+    # Galaxy S (SM-S9xx era)
+    "SM-S901": "Galaxy S22",
+    "SM-S906": "Galaxy S22+",
+    "SM-S908": "Galaxy S22 Ultra",
+    "SM-S911": "Galaxy S23",
+    "SM-S916": "Galaxy S23+",
+    "SM-S918": "Galaxy S23 Ultra",
+    "SM-S921": "Galaxy S24",
+    "SM-S926": "Galaxy S24+",
+    "SM-S928": "Galaxy S24 Ultra",
+    "SM-S931": "Galaxy S25",
+    "SM-S936": "Galaxy S25+",
+    "SM-S938": "Galaxy S25 Ultra",
+    # Galaxy Note
+    "SM-N930": "Galaxy Note 7",
+    "SM-N950": "Galaxy Note 8",
+    "SM-N960": "Galaxy Note 9",
+    "SM-N970": "Galaxy Note 10",
+    "SM-N975": "Galaxy Note 10+",
+    "SM-N980": "Galaxy Note 20",
+    "SM-N981": "Galaxy Note 20",
+    "SM-N985": "Galaxy Note 20 Ultra",
+    "SM-N986": "Galaxy Note 20 Ultra",
+    # Galaxy Z foldables
+    "SM-F700": "Galaxy Z Flip",
+    "SM-F707": "Galaxy Z Flip 5G",
+    "SM-F711": "Galaxy Z Flip 3",
+    "SM-F721": "Galaxy Z Flip 4",
+    "SM-F731": "Galaxy Z Flip 5",
+    "SM-F741": "Galaxy Z Flip 6",
+    "SM-F900": "Galaxy Fold",
+    "SM-F907": "Galaxy Fold 5G",
+    "SM-F916": "Galaxy Z Fold 2",
+    "SM-F926": "Galaxy Z Fold 3",
+    "SM-F936": "Galaxy Z Fold 4",
+    "SM-F946": "Galaxy Z Fold 5",
+    "SM-F956": "Galaxy Z Fold 6",
+}
+
+#: Samsung series for codes missing from the table above.
+SAMSUNG_SERIES = {
+    "SM-S": "Galaxy S",
+    "SM-G": "Galaxy S",
+    "SM-N": "Galaxy Note",
+    "SM-A": "Galaxy A",
+    "SM-J": "Galaxy J",
+    "SM-M": "Galaxy M",
+    "SM-E": "Galaxy E",
+    "SM-F": "Galaxy Z",
+    "SM-T": "Galaxy Tab",
+    "SM-X": "Galaxy Tab",
+}

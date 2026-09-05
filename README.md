@@ -1,0 +1,119 @@
+# uarite
+
+User-Agent parsing in Python has a long lineage. ua-parser is the official Python implementation of the ua-parser project, built around uap-core: the regex database extracted from BrowserScope's original parser and shared by implementations in many languages. user-agents wraps ua-parser with higher-level device and capability detection; its last release was in 2020. user-agent-parser is a separate implementation first released in 2022 and substantially updated in 2026, taking its own approach rather than building on uap-core. None of the three has further dependencies, but the regex databases weigh something: ua-parser installs at about 499 KB (531 KB with user-agents on top), user-agent-parser at 166 KB.
+
+```sh
+uv add uarite
+```
+
+This module is another take on the same problem: a small, dependency-free, compact pure-Python parser — 29 KB installed. It returns structured classifications, but also the thing most applications eventually need: a short human-readable description.
+
+It is particularly aimed at server-side analytics, where correctly recognizing crawlers and modern reduced User-Agents matters. It detects disguised crawlers, distinguishes AI/search/preview traffic, handles HarmonyOS and bots without calling them Android, resolves common device model codes and falls back to reasonable output even when all else fails.
+
+## Usage
+
+```python
+from uarite import uaparse
+
+r = uaparse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36")
+
+r.pretty    # "Chrome/152 Windows"
+r.kind      # "browser"
+r.bot       # ""
+r.url       # ""
+
+r = uaparse("Mozilla/5.0 (Linux; Android 13; Pixel 7) ... Chrome/134.0.6885.65 "
+            "Mobile Safari/537.36; compatible; facebookexternalhit/1.1; "
+            "+http://www.facebook.com/externalhit_uatext.php")
+
+r.pretty    # "Facebook"
+r.kind      # "preview"
+r.bot       # "Facebook"
+r.url       # "http://www.facebook.com/externalhit_uatext.php"
+```
+
+## Output
+
+`uaparse(ua)` returns a frozen `UA` dataclass:
+
+| Field    | Content                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------ |
+| `pretty` | Compact display string (below); `""` for empty/missing UAs, the raw UA when unrecognized         |
+| `bot`    | Crawler/previewer display name, or `""`                                                          |
+| `kind`   | `"browser"`, `"ai"`, `"search"`, `"preview"`, `"spider"`, or `""` (scripts/HTTP libraries)       |
+| `url`    | The crawler's info URL (`+https://…` pointer), or `""`; not part of `pretty` — link it in the UI |
+
+`kind` is `"browser"` for Mozilla-format UAs with no bot token, `"ai"` for training-data and AI-assistant fetchers (GPTBot, ClaudeBot, Google-Extended, ...), `"search"` for search-engine indexing (Googlebot, Bingbot, ...), `"preview"` for social link-preview fetchers (Facebook, WhatsApp, Slack, ...), `"spider"` for generic or unknown crawlers, and `""` for scripts and HTTP libraries.
+
+`pretty` is intended to be shown directly:
+
+- Desktop: `Chrome/152 Windows`, `Safari/18 macOS`
+- iPhone/iPad: `iPhone iOS 17` — the device and iOS version, not Safari (the only browser iOS has)
+- Android: `Chrome/118 Pixel 6`, or `Chrome/152 Android` when the device is unknown
+- Crawlers: `GPTBot (AI)`, `Googlebot (search)`, `Facebook` — the kind suffix appears only where a provider runs crawlers of more than one kind; single-kind providers stay plain
+- Scripts: `python-requests/2.32.5`, `pip/24.3.1 Linux`
+
+Chrome's reduced Android UA reports the frozen values `Android 10; K`; neither is real device information, so uarite deliberately reports simply `Android`. HarmonyOS compatibility strings are similarly recognized before their misleading Android tokens.
+
+## Performance
+
+All compared parsers cache repeated User-Agents, making cache hits effectively free. The useful difference is therefore the first parse of a new string.
+
+In our benchmarks, uncached uarite parses take roughly **3–7 µs**. user-agent-parser is in the same general range at **~7 µs**, while the pure-Python ua-parser/user-agents path takes roughly **130–250 µs**.
+
+The cache strategies differ in ways that matter under adversarial traffic. uarite caches only browser/client results (1024-entry LRU): crawlers tend to be unique and would otherwise evict the repeating UAs where caching is useful. user-agent-parser's 512-entry LRU lets a bot storm evict browsers, and user-agents' 200-entry dict clears entirely when full.
+
+## Accuracy
+
+The main difference is not how many fields can be returned, but what the parser believes the User-Agent actually says.
+
+For example, reduced Chrome does not really tell us that the device is named `K` or that it runs Android 10; an Android compatibility token does not make HarmonyOS Android; and a Facebook or Google crawler containing a plausible Chrome UA is still a crawler, not a Chrome visitor.
+
+The table below compares representative results. uarite shows `r.pretty`; the ua-parser display strings are assembled from its structured output for comparison. user-agents is omitted: it shares the ua-parser backend and returns virtually identical data in a slightly different structure.
+
+| Case                         | uarite¹                   | ua-parser²                                    |
+| ---------------------------- | ------------------------- | --------------------------------------------- |
+| Chrome, Windows              | Chrome/152 Windows        | Chrome/152 Windows                            |
+| Safari, macOS                | Safari/18 macOS           | Safari/18 Mac OS X Mac                        |
+| Opera, Linux                 | Opera/106 Linux           | Opera/106 Linux                               |
+| Chrome, Android (no model)   | Chrome/152 Android        | Chrome Mobile/152 Android K❌                 |
+| Chrome, Android (Pixel)      | Chrome/118 Pixel 6        | Chrome Mobile/118 Android Pixel 6             |
+| Edge, Android (model code)   | Edge/110 Galaxy S7        | Edge Mobile/110 Android Samsung SM-G930P      |
+| Firefox, Android             | Firefox/154 Android 15    | Firefox Mobile/154 Android Generic Smartphone |
+| Safari, iPhone               | iPhone iOS 17             | Mobile Safari/17 iOS iPhone                   |
+| Huawei HarmonyOS phone       | HuaweiBrowser/6 HarmonyOS | Huawei Browser/6 Android❌ Huawei Browser     |
+| GPTBot                       | GPTBot (AI)               | GPTBot/1 Spider                               |
+| Googlebot (disguised)        | Googlebot (search)        | Googlebot/2 Android❌ Spider                  |
+| Facebook preview (disguised) | Facebook                  | FacebookBot/1 Android Pixel 7 ❌              |
+| Meta crawler (disguised)     | Meta                      | Chrome/145 Windows ❌                         |
+| WhatsApp preview             | WhatsApp                  | WhatsApp/10 Spider                            |
+| Bytespider                   | Bytespider                | Bytespider/ Android❌ Generic Smartphone      |
+| BingPreview                  | BingPreview (preview)     | BingPreview/1 Windows❌ Spider                |
+| AhrefsBot                    | AhrefsBot                 | AhrefsBot/7 Spider                            |
+| python-requests              | python-requests/2.32.5    | Python Requests/2                             |
+
+❌ marks an incorrect browser, OS, or device interpretation.
+¹ `r.pretty` shown as is
+² `{user_agent.family}/{user_agent.major} {os.family} {device.family}`
+
+Measured on 100 current browser UAs, family / version / OS accuracy is 80% / 91% / 99% for both ua-parser and user-agents, and 90% / 90% / 100% for uarite — its nominal "misses" are the iPhone rows, where it reports `iPhone iOS 17` rather than Mobile Safari, a deliberate choice since Safari is the only browser iOS has. user-agent-parser is absent from the table: it detected under a third of the crawlers in the test below and crashed on five inputs, so a side-by-side formatting comparison adds little.
+
+Crawler detection was also tested against 2163 real-world crawler UAs from [monperrus/crawler-user-agents](https://github.com/monperrus/crawler-user-agents):
+
+| Parser            | Detected                 |
+| ----------------- | ------------------------ |
+| ua-parser         | 63.8%                    |
+| user-agents       | 60.1%                    |
+| user-agent-parser | 31.9% (crashed on 5 UAs) |
+| uarite            | 79.9%                    |
+
+The remaining uarite misses are mostly ancient tokenless crawler names and ordinary HTTP libraries, which are intentionally classified as scripts rather than bots.
+
+## Design
+
+uarite uses a small hand-maintained regex/rule database rather than the much larger uap-core dataset. Rules are kept simple enough to audit directly and ordered so that specific identities such as crawlers or HarmonyOS win over browser compatibility tokens. The generic tells are few: a product token containing bot/spider/crawl/scan/verify/check, or an info URL in the UA — real browsers never carry one.
+
+Unknown UAs remain visible: `pretty` falls back to the original string rather than discarding them, and malformed input never raises.
+
+Some information simply is not present in a User-Agent. Modern Brave is normally indistinguishable from Chrome without browser-side detection, and iPhone UAs do not contain the device model. uarite prefers an incomplete answer to an invented one.

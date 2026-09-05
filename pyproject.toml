@@ -1,0 +1,35 @@
+[build-system]
+requires = [
+    "hatchling>=1.25.0",
+    "hatch-vcs>=0.4.0",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "uarite"
+dynamic = ["version"]
+description = "Compact, human-readable User-Agent formatting and bot detection — no regex database, stdlib only"
+authors = [
+    { name = "Leo Vasanko" },
+]
+keywords = ["user-agent", "ua-parser"]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+Repository = "https://git.zi.fi/LeoVasanko/uarite"
+Issues = "https://github.com/LeoVasanko/uarite"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["uarite"]
