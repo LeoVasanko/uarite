@@ -127,8 +127,11 @@ def model_name(model: str) -> str:
     most other brands already send readable names).
     """
     if model.startswith("SM-"):
-        # Strip the trailing region/carrier letter: SM-S918B -> SM-S918.
+        # Strip the region/carrier suffix: SM-S918B -> SM-S918, and the
+        # Chinese/HK variant's trailing zero: SM-S9370 -> SM-S937.
         code = re.sub(r"[A-Z]{1,2}$", "", model)
+        if code not in SAMSUNG and code.endswith("0"):
+            code = code[:-1]
         if code in SAMSUNG:
             return SAMSUNG[code]
         series = SAMSUNG_SERIES.get(code[:4])
