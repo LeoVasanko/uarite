@@ -20,7 +20,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 matplotlib.rcParams["svg.fonttype"] = "path"  # text as paths: renders anywhere
-import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.pyplot as plt
 
 # µs per cold parse, from scripts/bench.py.
 US = {
@@ -28,7 +28,7 @@ US = {
     "uarite": 17.7,
     "ua-parser (Rust)": 46.6,
     "ua-parser (RE2)": 77.1,
-    "ua-parser (pure)": 321.5,
+    "ua-parser": 321.5,
     "user-agents": 334.4,
 }
 
@@ -42,15 +42,17 @@ colors = ["#6e6e6e"] * len(data)
 colors[names.index("uarite")] = "#2b6cb0"
 
 fig, ax = plt.subplots(figsize=(12, 1.7), dpi=100)
-bars = ax.barh(names, values, color=colors, height=0.62)
+bars = ax.barh(names, values, color=colors, height=0.82)
 ax.set_xlim(0, max(values))
 ax.axis("off")
 
 for bar, name, v in zip(bars, names, values):
-    # Round to three significant digits: 121951 -> "122 000".
-    rounded = round(v, 2 - int(f"{v:.0e}".split("e")[1]))
+    # Round to two significant digits: 121951 -> "120 000".
+    rounded = round(v, 1 - int(f"{v:.0e}".split("e")[1]))
     label = f"{name}  {rounded:,.0f}".replace(",", " ")
-    y = bar.get_y() + bar.get_height() / 2
+    # va="center" centers the font bbox incl. descender space, which leaves
+    # the glyphs slightly high; nudge down to optically center on the bar.
+    y = bar.get_y() + bar.get_height() / 2 - 0.09
     if bar.get_width() > max(values) * 0.28:
         # Long bar: white text inside, right-aligned at the bar end.
         ax.text(bar.get_width() - max(values) * 0.012, y, label,

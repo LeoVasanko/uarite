@@ -109,13 +109,13 @@ Crawler detection was also tested against real-world crawler UAs from [monperrus
 
 ## Performance
 
-All compared parsers cache repeated User-Agents, making cache hits effectively free. The useful difference is therefore the first parse of a new string.
+Startup cost matters for single-item processing, such as a script run per request: from import to the first parsed User-Agent, uarite takes about **10 ms**, while ua-parser takes **50–90 ms** depending on the backend.
 
-![Cold-cache throughput in parses per second: user-agent-parser 122k, uarite 56k, ua-parser Rust 21k, RE2 13k, pure 3k, user-agents 3k](https://git.zi.fi/LeoVasanko/uarite/raw/branch/main/docs/bench-speed.svg)
+![Cold-cache throughput in parses per second: user-agent-parser 122k, uarite 56k, ua-parser Rust 21k, RE2 13k, ua-parser 3k, user-agents 3k](https://git.zi.fi/LeoVasanko/uarite/raw/branch/main/docs/bench-speed.svg)
 
-*User-Agents parsed per second, first parse of previously unseen strings (cache cold), equal share of browser and crawler UAs. One-off setup costs excluded — ua-parser's very first parse alone takes ~59 ms loading its regex database.*
+_User-Agents parsed per second, first parse of previously unseen strings, equal share of browser and crawler UAs. One-off setup costs excluded._
 
-In our benchmarks, cold parses of previously unseen UAs (half browsers, half crawlers) take roughly **16 µs** with uarite. user-agent-parser is faster at **8 µs**, while the pure-Python ua-parser/user-agents path takes roughly **320 µs**, which can be a considerable slowdown; ua-parser's native backends help but still trail at ~77 µs (RE2) and ~47 µs (Rust).
+All parsers here cache repeated User-Agents, bringing the cost of a repeated string down to nearly zero. The differences only show on the first parse of a new string — exactly the case shown above.
 
 ## Design
 

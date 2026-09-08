@@ -34,6 +34,7 @@ from user_agent_parser import parse as uap_parse
 from user_agents import parse as uas_parse
 
 from uarite import uaparse
+from uarite.core import _parse_client
 
 ALL_DOMAINS = (
     ua_parser.Domain.USER_AGENT | ua_parser.Domain.OS | ua_parser.Domain.DEVICE
@@ -244,7 +245,7 @@ def bench_realistic():
         f" with 2000 mostly-unique bots)"
     )
     for name, fn in (
-        ("ua-parser (pure)", uap_pure),
+        ("ua-parser", uap_pure),
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
@@ -257,7 +258,7 @@ def bench_realistic():
         print(f"{name:20} {t / len(mix) * 1e6:7.1f} µs/UA   cache: {info}")
     print(f"\n## pure bot storm ({len(storm)} unique UAs, zero cache value)")
     for name, fn in (
-        ("ua-parser (pure)", uap_pure),
+        ("ua-parser", uap_pure),
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
@@ -283,8 +284,8 @@ def safe(fn):
 
 def cache_info(name):
     if name == "uarite":
-        i = uaparse.cache_info()
-        return f"{i.hits} hits / {i.misses} misses (cap 1024)"
+        i = _parse_client.cache_info()
+        return f"{i.hits} hits / {i.misses} misses (cap 1024, browsers only)"
     if name == "user-agent-parser":
         from user_agent_parser.parser import _cached_parse_user_agent
 
@@ -314,7 +315,7 @@ def bench():
     rng.shuffle(work)
     res = {}
     for name, fn in (
-        ("ua-parser (pure)", uap_pure),
+        ("ua-parser", uap_pure),
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
@@ -323,7 +324,7 @@ def bench():
     ):
         fn = safe(fn)
         fn("Warmup/1.0 (+https://example.com/warmup)")
-        uaparse.cache_clear()
+        _parse_client.cache_clear()
         t = timeit.timeit(lambda: [fn(u) for u in work], number=1)
         res[name] = t / len(work) * 1e6
     return res, len(work)
