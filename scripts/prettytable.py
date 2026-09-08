@@ -56,10 +56,6 @@ CASES = [
         "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
     ),
     (
-        "Claude-SearchBot (disguised)",
-        "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.3245.171 Mobile Safari/537.36; compatible; Claude-SearchBot/1.0; +https://www.anthropic.com/claude-searchbot",
-    ),
-    (
         "Facebook preview (disguised)",
         "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6885.65 Mobile Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php",
     ),

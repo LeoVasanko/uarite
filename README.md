@@ -29,8 +29,9 @@ r.url       # ""
 r = uaparse("Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6885.65 Mobile Safari/537.36; compatible; facebookexternalhit/1.1; +http://www.facebook.com/externalhit_uatext.php")
 
 r.pretty    # "Facebook"
-r.kind      # "preview"
+r.kind      # "social"
 r.bot       # "Facebook"
+r.provider  # "Meta"
 r.url       # "http://www.facebook.com/externalhit_uatext.php"
 ```
 
@@ -38,18 +39,21 @@ r.url       # "http://www.facebook.com/externalhit_uatext.php"
 
 `uaparse(ua)` returns a frozen `UA` dataclass:
 
-| Field    | Content                                                                                          |
-| -------- | ------------------------------------------------------------------------------------------------ |
-| `pretty` | Compact display string (below); `""` for empty/missing UAs, the raw UA when unrecognized         |
-| `engine` | `"Chromium"`, `"Gecko"`, `"Safari"`, `"ArkWeb"` (HarmonyOS), or `""`                             |
-| `os`     | `"Windows"`, `"macOS"`, `"Linux"`, `"iOS"`, `"Android"`, `"HarmonyOS"`, or `""`                  |
-| `bot`    | Crawler/previewer display name, or `""`                                                          |
-| `kind`   | `"browser"`, `"ai"`, `"search"`, `"preview"`, `"spider"`, or `""` (scripts/HTTP libraries)       |
-| `url`    | The crawler's info URL (`+https://…` pointer), or `""`; not part of `pretty` — link it in the UI |
+| Field    | Content                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------- |
+| pretty   | Compact display string (below); empty for empty/missing UAs, the raw UA when unrecognized         |
+| engine   | Chromium, Gecko, Safari, ArkWeb (HarmonyOS), or empty                                             |
+| os       | Windows, macOS, Linux, iOS, Android, HarmonyOS, or empty                                          |
+| bot      | Crawler/unfurler display name, or empty                                                           |
+| kind     | browser, ai, search, social, analytics, spider, or empty (scripts/HTTP libraries)                 |
+| url      | The crawler's info URL (the +https://… pointer), or empty; not part of pretty — link it in the UI |
+| provider | The bot's provider for known crawler families (Meta, Google, OpenAI, ...), or empty               |
 
 `os` is the major OS only, no version — meant for things like offering OS-specific downloads. `engine` is derived from the browser identity: every recognized browser is Chromium except Firefox/LibreWolf (Gecko) and Safari and all of iOS (Safari's engine is all Apple allows there); HarmonyOS browsers run ArkWeb. Both are left empty for crawlers: the browser and OS in a disguised crawler UA are part of the disguise.
 
 `kind` is `"browser"` for Mozilla-format UAs with no bot token, `"ai"` for training-data and AI-assistant fetchers (GPTBot, ClaudeBot, Google-Extended, ...), `"search"` for search-engine indexing (Googlebot, Bingbot, ...), `"preview"` for social link-preview fetchers (Facebook, WhatsApp, Slack, ...), `"spider"` for generic or unknown crawlers, and `""` for scripts and HTTP libraries.
+
+The kind field describes our detection of visitor type: browser for actual browsers, ai for AI training collectors, agents and user-initiated fetches (GPTBot, ClaudeBot, ChatGPT-User, Google-Extended, ...), search for search-engine indexing (Googlebot, Bingbot, ...), social for link-sharing unfurlers (Facebook, WhatsApp, Slack, ...), analytics for monitoring and site-analytics crawlers (UptimeRobot, AdsBot-Google, MJ12bot), spider for generic or unknown crawlers, and empty for scripts and HTTP libraries. Any value other than browser means the visitor is automated.
 
 `pretty` is intended to be shown directly:
 
@@ -90,11 +94,11 @@ The table below compares representative results. uarite shows `r.pretty`; the ua
 | Huawei HarmonyOS phone       | HuaweiBrowser/6 HarmonyOS | Huawei Browser/6 Android❌ Huawei Browser     |
 | GPTBot                       | GPTBot (AI)               | GPTBot/1 Spider                               |
 | Googlebot (disguised)        | Googlebot (search)        | Googlebot/2 Android❌ Spider                  |
-| Facebook preview (disguised) | Facebook                  | FacebookBot/1 Android Pixel 7 ❌              |
-| Meta crawler (disguised)     | Meta                      | Chrome/145 Windows ❌                         |
+| Facebook preview (disguised) | Facebook (social)         | FacebookBot/1 Android Pixel 7 ❌              |
+| Meta crawler (disguised)     | Meta-ExternalAgent (AI)   | Chrome/145 Windows ❌                         |
 | WhatsApp preview             | WhatsApp                  | WhatsApp/10 Spider                            |
 | Bytespider                   | Bytespider                | Bytespider/ Android❌ Generic Smartphone      |
-| BingPreview                  | BingPreview (preview)     | BingPreview/1 Windows❌ Spider                |
+| BingPreview                  | BingPreview               | BingPreview/1 Windows❌ Spider                |
 | AhrefsBot                    | AhrefsBot                 | AhrefsBot/7 Spider                            |
 | python-requests              | python-requests/2.32.5    | Python Requests/2                             |
 

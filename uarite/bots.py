@@ -1,19 +1,24 @@
-"""Crawler and link-preview tables."""
+"""Crawler and link-unfurler tables."""
 
 #: Lowercase UA substring to (display name, kind).  Ordered: first match
 #: wins, so overlapping names go from most to least specific.
 BOTS = {
+    # Qualys SSL Labs scanner: frozen on this exact Firefox/45 string since
+    # ~2016; the pinned Gecko date makes the substring distinctive.
+    "mozilla/5.0 (x11; linux x86_64; rv:45.0) gecko/20100101 firefox/45.0": (
+        "Qualys SSL Labs",
+        "spider",
+    ),
     "feedfetcher-google": ("Feedfetcher-Google", "search"),
     "google-inspectiontool": ("Google-InspectionTool", "search"),
-    "google-read-aloud": ("Google-Read-Aloud", "search"),
-    "mediapartners-google": ("Mediapartners-Google", "spider"),
-    "adsbot-google": ("AdsBot-Google", "spider"),
+    "google-read-aloud": ("Google-Read-Aloud", "ai"),
+    "mediapartners-google": ("Mediapartners-Google", "analytics"),
+    "adsbot-google": ("AdsBot-Google", "analytics"),
     "apis-google": ("APIs-Google", "spider"),
-    "storebot-google": ("Storebot-Google", "spider"),
-    "duplexweb-google": ("DuplexWeb-Google", "spider"),
+    "storebot-google": ("Storebot-Google", "search"),
     "google-extended": ("Google-Extended", "ai"),
     "googlebot": ("Googlebot", "search"),
-    "googleother": ("GoogleOther", "spider"),
+    "googleother": ("GoogleOther", "ai"),
     "bingbot": ("Bingbot", "search"),
     "applebot": ("Applebot", "search"),
     "gptbot": ("GPTBot", "ai"),
@@ -29,34 +34,40 @@ BOTS = {
     "reflectionbot": ("Reflectionbot", "ai"),
     "amzn-searchbot": ("Amzn-SearchBot", "search"),
     "amazonbot": ("Amazonbot", "search"),
-    "ahrefsbot": ("AhrefsBot", "spider"),
-    "mj12bot": ("MJ12bot", "spider"),
-    "facebookexternalhit": ("Facebook", "preview"),
-    "meta-externalagent": ("Meta", "preview"),
-    "skypeuripreview": ("Skype", "preview"),
-    "bingpreview": ("BingPreview", "preview"),
-    "pinterest": ("Pinterest", "preview"),
-    "embedly": ("Embedly", "preview"),
-    "iframely": ("Iframely", "preview"),
-    "discordbot": ("Discord", "preview"),
-    "slackbot": ("Slack", "preview"),
-    "telegrambot": ("Telegram", "preview"),
-    "twitterbot": ("Twitter", "preview"),
-    "linkedinbot": ("LinkedIn", "preview"),
-    "whatsapp": ("WhatsApp", "preview"),
+    "ahrefsbot": ("AhrefsBot", "search"),
+    "mj12bot": ("MJ12bot", "analytics"),
+    "facebookexternalhit": ("Facebook", "social"),
+    "meta-externalagent": ("Meta-ExternalAgent", "ai"),
+    "meta-externalfetcher": ("Meta-ExternalFetcher", "ai"),
+    "meta-webindexer": ("Meta-WebIndexer", "search"),
+    "facebookbot": ("FacebookBot", "ai"),
+    "bingpreview": ("BingPreview", "search"),
+    "pinterest": ("Pinterest", "social"),
+    "embedly": ("Embedly", "social"),
+    "iframely": ("Iframely", "social"),
+    "discordbot": ("Discord", "social"),
+    "slackbot": ("Slack", "social"),
+    "telegrambot": ("Telegram", "social"),
+    "twitterbot": ("Twitter", "social"),
+    "linkedinbot": ("LinkedIn", "social"),
+    "whatsapp": ("WhatsApp", "social"),
     "headlesschrome": ("HeadlessChrome", "spider"),
-    "phantomjs": ("PhantomJS", "spider"),
-    "uptimerobot": ("UptimeRobot", "spider"),
-    "pingdom": ("Pingdom", "spider"),
+    "uptimerobot": ("UptimeRobot", "analytics"),
+    "pingdom": ("Pingdom", "analytics"),
 }
 
 #: Pretty suffixes for the kinds more precise than a generic spider.
-KIND_LABEL = {"ai": "AI", "search": "search", "preview": "preview"}
+KIND_LABEL = {
+    "ai": "AI",
+    "search": "search",
+    "social": "social",
+    "analytics": "analytics",
+}
 
-#: Providers with more than one crawler product; the kind label is kept
-#: only where it distinguishes siblings within the group.
-PROVIDERS = [
-    (
+#: Crawler product families: provider -> the display names of its bots.
+#: The kind label is kept only where it distinguishes siblings within a family.
+PROVIDERS = {
+    "Google": frozenset({
         "Googlebot",
         "Google-Extended",
         "GoogleOther",
@@ -67,19 +78,33 @@ PROVIDERS = [
         "AdsBot-Google",
         "APIs-Google",
         "Storebot-Google",
-        "DuplexWeb-Google",
-    ),
-    ("ClaudeBot", "Claude-User", "Claude-SearchBot"),
-    ("GPTBot", "OAI-SearchBot", "ChatGPT-User"),
-    ("PerplexityBot", "Perplexity-User"),
-    ("Amazonbot", "Amzn-SearchBot"),
-    ("Bingbot", "BingPreview"),
-]
+    }),
+    "Anthropic": frozenset({"ClaudeBot", "Claude-User", "Claude-SearchBot"}),
+    "OpenAI": frozenset({"GPTBot", "OAI-SearchBot", "ChatGPT-User"}),
+    "Perplexity": frozenset({"PerplexityBot", "Perplexity-User"}),
+    "Amazon": frozenset({"Amazonbot", "Amzn-SearchBot"}),
+    "Microsoft": frozenset({"Bingbot", "BingPreview"}),
+    "Meta": frozenset({
+        "Facebook",
+        "FacebookBot",
+        "Meta-ExternalAgent",
+        "Meta-ExternalFetcher",
+        "Meta-WebIndexer",
+    }),
+}
 
-#: Bot names whose kind label is displayed, computed from the groups.
+#: Reverse lookup: bot display name -> provider.
+PROVIDER_OF = {
+    name: provider for provider, names in PROVIDERS.items() for name in names
+}
+
+#: Reverse lookup: bot display name -> kind.
+NAME_KIND = {name: kind for name, kind in BOTS.values()}
+
+#: Bot names whose kind label is displayed: those in families with mixed kinds.
 LABELED = {
     name
-    for group in PROVIDERS
-    if len({kind for n, kind in BOTS.values() if n in group}) > 1
-    for name in group
+    for names in PROVIDERS.values()
+    if len({NAME_KIND[name] for name in names}) > 1
+    for name in names
 }

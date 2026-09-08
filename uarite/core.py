@@ -4,18 +4,19 @@ import re
 from dataclasses import dataclass
 from functools import lru_cache
 
-from .bots import BOTS, KIND_LABEL, LABELED
+from .bots import BOTS, KIND_LABEL, LABELED, PROVIDER_OF
 from .clients import BROWSERS, SAMSUNG, SAMSUNG_SERIES
 
 
 @dataclass(frozen=True)
 class UA:
-    pretty: str
-    engine: str
-    os: str
-    bot: str
-    kind: str
-    url: str
+    pretty: str = ""
+    engine: str = ""
+    os: str = ""
+    bot: str = ""
+    kind: str = ""
+    url: str = ""
+    provider: str = ""
 
 
 #: Fallback for unknown crawlers: a product token whose name says so.
@@ -48,7 +49,7 @@ def url(ua: str) -> str:
 
 
 def bot(ua: str) -> tuple[str, str]:
-    """(display name, kind) of the crawler/previewer the UA claims."""
+    """(display name, kind) of the crawler/unfurler the UA claims."""
     low = ua.lower()
     m = BOTS_RE.search(low)
     if m:
@@ -97,6 +98,19 @@ def browser(ua: str) -> str:
 
 #: Engines that differ from the Chromium default for recognized browsers.
 ENGINES = {"Firefox": "Gecko", "LibreWolf": "Gecko", "Safari": "Safari"}
+
+#: Oldest plausible major versions (≈2023 releases).  These browsers
+#: auto-update, so anything older is a scanner's frozen string, not a real
+#: installation.  Safari is OS-tied and exempt; old Macs genuinely run it.
+#: Bump the floors every few years.
+ANCIENT = {"Firefox": 108, "Chrome": 108, "Edge": 108, "Opera": 95}
+
+
+def spoofed(b: str) -> bool:
+    """True when a ``Browser/major`` claims an impossibly old version."""
+    name, _, ver = b.partition("/")
+    floor = ANCIENT.get(name)
+    return floor is not None and ver.isdigit() and int(ver) < floor
 
 
 def engine(b: str) -> str:
@@ -151,20 +165,33 @@ def uaparse(ua: str) -> UA:
     would just flush the cache.
     """
     if not ua or not ua.strip() or ua in ("-", "null"):
-        return UA("", "", "", "", "", "")
+        return UA()
     name, kind = bot(ua)
     if name:
         # The browser/OS in crawler UAs is a disguise; the bot identity is
         # the relevant information, so ``engine`` and ``os`` are left empty.
         label = KIND_LABEL.get(kind, "") if name in LABELED else ""
         pretty = f"{name} ({label})" if label else name
-        return UA(pretty, "", "", name, kind, url(ua))
+        return UA(
+            pretty=pretty, bot=name, kind=kind, url=url(ua),
+            provider=PROVIDER_OF.get(name, ""),
+        )
     return _parse_client(ua)
 
 
 @lru_cache(maxsize=1024)
 def _parse_client(ua: str) -> UA:
     """Browser/client parsing behind the cache; ``uaparse`` filters bots out."""
+    r = _client(ua)
+    # Frozen ancient browser strings are scanners/scripts, not users: show
+    # the claimed browser, but mark it and drop the fake engine/os/kind.
+    if r.kind == "browser" and spoofed(browser(ua)):
+        return UA(pretty=f"{r.pretty} (spoofed)")
+    return r
+
+
+def _client(ua: str) -> UA:
+    """Browser/client parsing; spoof marking is done by the caller."""
 
     # Non-browser HTTP clients ("python-requests/2.32.5", "curl/8.0",
     # "pip/24.3.1 {json…}"): the first product token, plus the OS when
@@ -175,22 +202,22 @@ def _parse_client(ua: str) -> UA:
         os_name = os(ua)
         if os_name and os_name not in pretty:
             pretty = f"{pretty} {os_name}"
-        return UA(pretty, "", os_name, "", "", "")
+        return UA(pretty=pretty, os=os_name)
 
     # HarmonyOS carries an "Android" compatibility token, so it must be
     # detected before Android.
     if "OpenHarmony" in ua or "HarmonyOS" in ua or "ArkWeb" in ua:
         b = browser(ua)
         return UA(
-            f"{b} HarmonyOS" if b else "HarmonyOS", "ArkWeb", "HarmonyOS",
-            "", "browser", "",
+            pretty=f"{b} HarmonyOS" if b else "HarmonyOS",
+            engine="ArkWeb", os="HarmonyOS", kind="browser",
         )
 
     if "iPhone" in ua or "iPad" in ua:
         device = "iPhone" if "iPhone" in ua else "iPad"
         m = re.search(r"OS (\d+)", ua)
         pretty = f"{device} iOS {m.group(1)}" if m else device
-        return UA(pretty, "Safari", "iOS", "", "browser", "")
+        return UA(pretty=pretty, engine="Safari", os="iOS", kind="browser")
 
     m = re.search(r"Android ([\d.]+)", ua)
     if m:
@@ -208,14 +235,17 @@ def _parse_client(ua: str) -> UA:
             if token and token not in ("wv", "Mobile", "Tablet"):
                 model = model_name(token)
             parts = [p for p in (b, model or f"Android {m.group(1)}") if p]
-        return UA(" ".join(parts), engine(b), "Android", "", "browser", "")
+        return UA(
+            pretty=" ".join(parts), engine=engine(b), os="Android",
+            kind="browser",
+        )
 
     b = browser(ua)
     os_name = os(ua)
     pretty = f"{b} {os_name}".strip()
-    return UA(pretty or ua, engine(b), os_name, "", "browser", "")
+    return UA(pretty=pretty or ua, engine=engine(b), os=os_name, kind="browser")
 
 
 def is_bot(ua: str) -> bool:
-    """True when the UA claims a crawler or link-preview identity."""
+    """True when the UA claims a crawler or link-unfurling identity."""
     return bool(uaparse(ua).bot)
