@@ -13,7 +13,6 @@ class UA:
     pretty: str = ""
     engine: str = ""
     os: str = ""
-    bot: str = ""
     kind: str = ""
     url: str = ""
     provider: str = ""
@@ -154,15 +153,15 @@ def model_name(model: str) -> str:
     return model
 
 
+@lru_cache(maxsize=1024)
 def uaparse(ua: str) -> UA:
     """Parse a User-Agent string into a compact ``UA`` record.
 
     ``pretty`` is "" for empty/missing UAs and the original string when
     nothing is recognized.
 
-    Only the browser path is cached: real visitors repeat (cache hits),
-    while crawlers and scripts are mostly one-hit wonders whose entries
-    would just flush the cache.
+    Everything is cached: a dict lookup on the full UA string is far
+    cheaper than re-parsing, and the frozen ``UA`` is shared safely.
     """
     if not ua or not ua.strip() or ua in ("-", "null"):
         return UA()
@@ -173,15 +172,14 @@ def uaparse(ua: str) -> UA:
         label = KIND_LABEL.get(kind, "") if name in LABELED else ""
         pretty = f"{name} ({label})" if label else name
         return UA(
-            pretty=pretty, bot=name, kind=kind, url=url(ua),
+            pretty=pretty, kind=kind, url=url(ua),
             provider=PROVIDER_OF.get(name, ""),
         )
     return _parse_client(ua)
 
 
-@lru_cache(maxsize=1024)
 def _parse_client(ua: str) -> UA:
-    """Browser/client parsing behind the cache; ``uaparse`` filters bots out."""
+    """Browser/client parsing; ``uaparse`` filters bots out."""
     r = _client(ua)
     # Frozen ancient browser strings are scanners/scripts, not users: show
     # the claimed browser, but mark it and drop the fake engine/os/kind.
@@ -244,8 +242,3 @@ def _client(ua: str) -> UA:
     os_name = os(ua)
     pretty = f"{b} {os_name}".strip()
     return UA(pretty=pretty or ua, engine=engine(b), os=os_name, kind="browser")
-
-
-def is_bot(ua: str) -> bool:
-    """True when the UA claims a crawler or link-unfurling identity."""
-    return bool(uaparse(ua).bot)
