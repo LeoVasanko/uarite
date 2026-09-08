@@ -34,7 +34,6 @@ from user_agent_parser import parse as uap_parse
 from user_agents import parse as uas_parse
 
 from uarite import uaparse
-from uarite.core import _parse_client
 
 ALL_DOMAINS = (
     ua_parser.Domain.USER_AGENT | ua_parser.Domain.OS | ua_parser.Domain.DEVICE
@@ -284,8 +283,8 @@ def safe(fn):
 
 def cache_info(name):
     if name == "uarite":
-        i = _parse_client.cache_info()
-        return f"{i.hits} hits / {i.misses} misses (cap 1024, browsers only)"
+        i = uaparse.cache_info()
+        return f"{i.hits} hits / {i.misses} misses (cap 1024)"
     if name == "user-agent-parser":
         from user_agent_parser.parser import _cached_parse_user_agent
 
@@ -324,7 +323,7 @@ def bench():
     ):
         fn = safe(fn)
         fn("Warmup/1.0 (+https://example.com/warmup)")
-        _parse_client.cache_clear()
+        uaparse.cache_clear()
         t = timeit.timeit(lambda: [fn(u) for u in work], number=1)
         res[name] = t / len(work) * 1e6
     return res, len(work)

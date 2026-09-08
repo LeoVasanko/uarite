@@ -20,7 +20,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 matplotlib.rcParams["svg.fonttype"] = "path"  # text as paths: renders anywhere
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # noqa: E402
 
 # µs per cold parse, from scripts/bench.py.
 US = {
