@@ -154,7 +154,7 @@ def model_name(model: str) -> str:
 
 
 @lru_cache(maxsize=1024)
-def uaparse(ua: str) -> UA:
+def uaparse(ua: str | None) -> UA:
     """Parse a User-Agent string into a compact ``UA`` record.
 
     ``pretty`` is "" for empty/missing UAs and the original string when
