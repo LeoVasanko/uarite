@@ -40,7 +40,6 @@ BOTS = {
     "meta-externalagent": ("Meta-ExternalAgent", "ai"),
     "meta-externalfetcher": ("Meta-ExternalFetcher", "ai"),
     "meta-webindexer": ("Meta-WebIndexer", "search"),
-    "facebookbot": ("FacebookBot", "ai"),
     "bingpreview": ("BingPreview", "search"),
     "pinterest": ("Pinterest", "social"),
     "embedly": ("Embedly", "social"),
@@ -86,7 +85,6 @@ PROVIDERS = {
     "Microsoft": frozenset({"Bingbot", "BingPreview"}),
     "Meta": frozenset({
         "Facebook",
-        "FacebookBot",
         "Meta-ExternalAgent",
         "Meta-ExternalFetcher",
         "Meta-WebIndexer",
@@ -96,6 +94,21 @@ PROVIDERS = {
 #: Reverse lookup: bot display name -> provider.
 PROVIDER_OF = {
     name: provider for provider, names in PROVIDERS.items() for name in names
+}
+
+#: Per-bot pretty overrides: the full display string, replacing the
+#: name-plus-kind-label composition entirely.
+PRETTY_OVERRIDE = {
+    "Facebook": "Facebook",
+    "Feedfetcher-Google": "Google Feedfetcher (search)",
+    "Google-InspectionTool": "Google InspectionTool (search)",
+    "Google-Read-Aloud": "Google Read-Aloud (AI)",
+    "Mediapartners-Google": "Google Mediapartners (analytics)",
+    "AdsBot-Google": "Google AdsBot (analytics)",
+    "APIs-Google": "Google APIs",
+    "Storebot-Google": "Google Storebot (search)",
+    "Google-Extended": "Google Extended (AI)",
+    "GoogleOther": "Google Other (AI)",
 }
 
 #: Reverse lookup: bot display name -> kind.

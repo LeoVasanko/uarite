@@ -4,7 +4,7 @@ import re
 from dataclasses import dataclass
 from functools import lru_cache
 
-from .bots import BOTS, KIND_LABEL, LABELED, PROVIDER_OF
+from .bots import BOTS, KIND_LABEL, LABELED, PRETTY_OVERRIDE, PROVIDER_OF
 from .clients import BROWSERS, SAMSUNG, SAMSUNG_SERIES
 
 
@@ -169,8 +169,10 @@ def uaparse(ua: str | None) -> UA:
     if name:
         # The browser/OS in crawler UAs is a disguise; the bot identity is
         # the relevant information, so ``engine`` and ``os`` are left empty.
-        label = KIND_LABEL.get(kind, "") if name in LABELED else ""
-        pretty = f"{name} ({label})" if label else name
+        pretty = PRETTY_OVERRIDE.get(name)
+        if pretty is None:
+            label = KIND_LABEL.get(kind, "") if name in LABELED else ""
+            pretty = f"{name} ({label})" if label else name
         return UA(
             pretty=pretty, kind=kind, url=url(ua),
             provider=PROVIDER_OF.get(name, ""),
