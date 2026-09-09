@@ -1,6 +1,6 @@
 # User-Agent Parsing Done Right
 
-This module takes a smaller, faster, modern approach to User-Agent parsing. It's a dependency-free pure-Python parser weighing only 25 kB, with strong handling of current browsers and crawlers. Despite its light weight, uarite identifies both browsers and crawlers more accurately than any competing implementation tested here.
+Fast and accurate handling of modern browsers and crawlers. Despite its light weight, uarite identifies both browsers and crawlers more accurately than any competing implementation tested here. Despite being pure Python, it outperforms ua-parser's C++/Rust variants.
 
 It returns structured classification, but also the thing most applications eventually need: **a short pretty description**.
 
@@ -99,7 +99,7 @@ Import and first parse takes about **10 ms** for uarite and effectively nothing 
 ![uarite 56 thousand, ua-parser native code variants Rust 26 thousand, RE2 14 thousand, and finally plain Python ua-parser and user-agents 3 thousand](https://git.zi.fi/LeoVasanko/uarite/raw/branch/main/docs/bench-speed.svg)
 _User-Agents parsed per second per CPU core, first parse of unseen strings, with equal shares of browser and crawler UAs. One-off setup costs excluded. Cached results and fastuaparser (1 million) are left out of the graph._
 
-On raw speed fastuaparser wins: a few string searches per UA, no cache needed. The trade-off shows in the accuracy table above — no versions, no crawler names. All other parsers cache results. With cache hits, **uarite reaches about 36 million lookups per second**, compared with about 5 million for ua-parser and 600 000 for user-agents.
+On raw speed fastuaparser wins: a few string searches per UA, no cache needed. The trade-off shows in the accuracy table above. All other parsers cache results. With cache hits, **uarite reaches about 36 million lookups per second**, compared with about 5 million for ua-parser and 600 000 for user-agents.
 
 ## Why yet another UA parser
 
