@@ -17,7 +17,7 @@ benchmark-only dependencies, pulled ad hoc via `uv run --with`.
 - `prettytable.py` — prints the accuracy-comparison markdown table:
 
   ```
-  uv run --with ua-parser --with user-agents python scripts/prettytable.py
+  uv run --with ua-parser --with fastuaparser python scripts/prettytable.py
   ```
 
 - `bench.py` — prints browser-accuracy counts, crawler-detection rates,
@@ -25,6 +25,6 @@ benchmark-only dependencies, pulled ad hoc via `uv run --with`.
   mix, bot storm) with cache statistics:
 
   ```
-  uv run --with ua-parser --with user-agents --with user-agent-parser \
+  uv run --with ua-parser --with user-agents --with fastuaparser \
       python scripts/bench.py
   ```

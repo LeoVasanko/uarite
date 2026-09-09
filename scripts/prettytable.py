@@ -1,15 +1,15 @@
 """Print the README's accuracy-comparison table as markdown.
 
-uarite's column is simply `r.pretty`.  The reference modules have no
-display format; their columns use one plain format string each on their
-structured output (footnotes ²³ in the README).  Requires uarite (installed)
-plus the benchmark-only reference parsers:
+uarite's and fastuaparser's columns are simply their pretty-string output.
+ua-parser has no display format; its column uses one plain format string
+on the structured output (footnotes ¹² in the README).  Requires uarite
+(installed) plus the benchmark-only reference parsers:
 
-    uv run --with ua-parser --with user-agents python scripts/prettytable.py
+    uv run --with ua-parser --with fastuaparser python scripts/prettytable.py
 """
 
+from fastuaparser import parse_ua as fua_parse
 from ua_parser import parse as ua_parse
-from user_agents import parse as uas_parse
 
 from uarite import uaparse
 
@@ -86,15 +86,8 @@ def imitate_uaparser(ua):
     return f"{fam}/{maj} {osf} {dev}"
 
 
-def imitate_useragents(ua):
-    r = uas_parse(ua)
-    fam = r.browser.family or ""
-    maj = str(r.browser.version[0]) if r.browser.version else ""
-    return f"{fam}/{maj} {r.os.family or ''} {r.device.family or ''}"
-
-
-print("| Case | uarite¹ | ua-parser² | user-agents³ |")
+print("| Case | uarite¹ | fastuaparser² | ua-parser³ |")
 print("|---|---|---|---|")
 for name, ua in CASES:
     ours = uaparse(ua).pretty or "—"
-    print(f"| {name} | {ours} | {imitate_uaparser(ua)} | {imitate_useragents(ua)} |")
+    print(f"| {name} | {ours} | {fua_parse(ua)} | {imitate_uaparser(ua)} |")

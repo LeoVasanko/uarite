@@ -1,16 +1,16 @@
 # /// script
 # requires-python = ">=3.14"
 # dependencies = [
+#     "fastuaparser>=0.1.4",
 #     "ua-parser[re2,regex]>=1.0.2",
 #     "uarite",
-#     "user-agent-parser>=0.2.1",
 #     "user-agents>=2.2.0",
 # ]
 #
 # [tool.uv.sources]
 # uarite = { path = "..", editable = true }
 # ///
-"""Benchmark uarite vs ua-parser vs user-agents vs user-agent-parser.
+"""Benchmark uarite vs ua-parser vs user-agents vs fastuaparser.
 
 Reproduces the README's numbers: browser accuracy on 100 modern UAs,
 crawler detection on 2163 real-world crawler UAs, and timing (unique UAs,
@@ -29,8 +29,8 @@ import timeit
 from pathlib import Path
 
 import ua_parser
+from fastuaparser import parse_ua as fua_parse
 from ua_parser import parse as ua_parse
-from user_agent_parser import parse as uap_parse
 from user_agents import parse as uas_parse
 
 from uarite import uaparse
@@ -73,6 +73,7 @@ def uap_re2(ua):
 
 def uap_rust(ua):
     return ua_variant("rust")(ua)
+
 
 DATA = Path(__file__).parent / "data"
 BROWSERS = json.loads((DATA / "top-user-agents.json").read_text())
@@ -125,7 +126,6 @@ def score_browsers():
     for name, fn in (
         ("ua-parser", ua_parse),
         ("user-agents", uas_parse),
-        ("user-agent-parser", uap_parse),
     ):
         fam_ok = ver_ok = os_ok = 0
         for ua in BROWSERS:
@@ -135,10 +135,6 @@ def score_browsers():
                 fam = r.user_agent.family or ""
                 maj = r.user_agent.major or ""
                 osf = r.os.family or ""
-            elif name == "user-agent-parser":
-                fam = r[0] or ""
-                maj = (r[1] or "").split(".")[0]
-                osf = r[2] or ""
             else:
                 fam = r.browser.family or ""
                 maj = str(r.browser.version[0]) if r.browser.version else ""
@@ -148,6 +144,29 @@ def score_browsers():
             ver_ok += emaj == maj
             os_ok += eos == norm_os(osf)
         res[name] = (fam_ok, ver_ok, os_ok)
+    # fastuaparser returns one pretty string ("Chrome - Windows") and no
+    # version numbers, so score it on the substrings it does produce.
+    fam_ok = ver_ok = os_ok = 0
+    for ua in BROWSERS:
+        efam, emaj, eos = expected(ua)
+        pretty = fua_parse(ua)
+        fam_ok += efam.split()[0].lower() in pretty.lower()
+        ver_ok += bool(emaj) and emaj in pretty
+        os_ok += bool(
+            re.search(
+                {
+                    "ios": r"iOS|iPhone|iPad",
+                    "macos": r"Mac",
+                    "windows": r"Windows",
+                    "linux": r"Linux",
+                    "android": r"Android",
+                }[eos],
+                pretty,
+            )
+            if eos
+            else True
+        )
+    res["fastuaparser"] = (fam_ok, ver_ok, os_ok)
     fam_ok = ver_ok = os_ok = 0
     for ua in BROWSERS:
         efam, emaj, eos = expected(ua)
@@ -183,7 +202,7 @@ def score_browsers():
 def score_crawlers():
     out = {}
     crashes = 0
-    for name in ("ua-parser", "user-agents", "user-agent-parser", "uarite"):
+    for name in ("ua-parser", "user-agents", "fastuaparser", "uarite"):
         det = 0
         for ua in CRAWLER_UAS:
             try:
@@ -195,14 +214,16 @@ def score_crawlers():
                     )
                 elif name == "user-agents":
                     bot = uas_parse(ua).is_bot
-                elif name == "user-agent-parser":
-                    bot = uap_parse(ua)[4] == "Bot"
+                elif name == "fastuaparser":
+                    # "Bot" is a real verdict; "Other" is a non-browser
+                    # client (wget etc.), which is automated traffic too.
+                    bot = fua_parse(ua).split(" - ")[0] in ("Bot", "Other")
                 else:
                     # Anything not recognized as a real browser is automated:
                     # known bots, generic spiders, clients, spoofed claims.
                     bot = uaparse(ua).kind != "browser"
             except Exception:
-                crashes += name == "user-agent-parser"
+                crashes += name == "fastuaparser"
                 continue
             det += bot
         out[name] = det
@@ -248,7 +269,7 @@ def bench_realistic():
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
-        ("user-agent-parser", uap_parse),
+        ("fastuaparser", fua_parse),
         ("uarite", uaparse),
     ):
         fn = safe(fn)
@@ -261,7 +282,7 @@ def bench_realistic():
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
-        ("user-agent-parser", uap_parse),
+        ("fastuaparser", fua_parse),
         ("uarite", uaparse),
     ):
         fn = safe(fn)
@@ -285,11 +306,8 @@ def cache_info(name):
     if name == "uarite":
         i = uaparse.cache_info()
         return f"{i.hits} hits / {i.misses} misses (cap 1024)"
-    if name == "user-agent-parser":
-        from user_agent_parser.parser import _cached_parse_user_agent
-
-        i = _cached_parse_user_agent.cache_info()
-        return f"{i.hits} hits / {i.misses} misses (cap 512 LRU)"
+    if name == "fastuaparser":
+        return "none (branch parser, ~1 µs flat)"
     if name == "user-agents":
         from ua_parser.user_agent_parser import _PARSE_CACHE
 
@@ -318,7 +336,7 @@ def bench():
         ("ua-parser (re2)", uap_re2),
         ("ua-parser (rust)", uap_rust),
         ("user-agents", uas_parse),
-        ("user-agent-parser", uap_parse),
+        ("fastuaparser", fua_parse),
         ("uarite", uaparse),
     ):
         fn = safe(fn)
@@ -331,8 +349,10 @@ def bench():
 
 if __name__ == "__main__":
     res, nwork = bench()
-    print(f"## speed (µs per cold parse, {nwork} unique UAs,"
-          " half browsers / half crawlers)")
+    print(
+        f"## speed (µs per cold parse, {nwork} unique UAs,"
+        " half browsers / half crawlers)"
+    )
     for k, v in res.items():
         print(f"{k:20} {v:8.1f}")
     print(f"\n## browser accuracy (n={len(BROWSERS)}): family / version / OS correct")
@@ -342,6 +362,6 @@ if __name__ == "__main__":
     print(f"\n## crawler detection (n={len(CRAWLER_UAS)})")
     for k, v in det.items():
         print(f"{k:18} {v:5}  ({v / len(CRAWLER_UAS):.1%})")
-    print(f"user-agent-parser crashed on {crashes} UAs")
+    print(f"fastuaparser crashed on {crashes} UAs")
     print(f"\nuarite URL extraction: {url_got}/{url_have} of instances carrying a URL")
     bench_realistic()
