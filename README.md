@@ -97,7 +97,7 @@ Crawler detection was tested against [real world UAs](https://github.com/monperr
 Import and first parse takes about **10 ms** for uarite and effectively nothing for fastuaparser, compared with 50–90 ms for ua-parser depending on backend.
 
 ![uarite 56 thousand, ua-parser native code variants Rust 26 thousand, RE2 14 thousand, and finally plain Python ua-parser and user-agents 3 thousand](https://git.zi.fi/LeoVasanko/uarite/raw/branch/main/docs/bench-speed.svg)
-_User-Agents parsed per second per CPU core, first parse of unseen strings, with equal shares of browser and crawler UAs. One-off setup costs excluded. Cached results and fastuaparser (1 million) are too far off this scale to draw meaningfully and are left out of the graph._
+_User-Agents parsed per second per CPU core, first parse of unseen strings, with equal shares of browser and crawler UAs. One-off setup costs excluded. Cached results and fastuaparser (1 million) are left out of the graph._
 
 On raw speed fastuaparser wins: a few string searches per UA, no cache needed. The trade-off shows in the accuracy table above — no versions, no crawler names. All other parsers cache results. With cache hits, **uarite reaches about 36 million lookups per second**, compared with about 5 million for ua-parser and 600 000 for user-agents.
 
