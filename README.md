@@ -1,16 +1,16 @@
 # User-Agent Parsing Done Right
 
-Fast and accurate handling of modern browsers and crawlers. Despite its light weight, uarite identifies both browsers and crawlers more accurately than any competing implementation tested here. Despite being pure Python, it outperforms ua-parser's C++/Rust variants.
+Fast and accurate handling of modern browsers and crawlers. Despite its light weight, uarite identifies both browsers and crawlers more accurately than any competing implementation tested here. Despite being pure Python, it outperforms ua-parser's C++/Rust variants. We also provide a [JavaScript uarite](https://www.npmjs.com/package/@vasanko/uarite) with exact same output.
 
 It returns structured classification, but also the thing most applications eventually need: **a short pretty description**.
+
+## Usage
 
 Add it to your project:
 
 ```sh
 uv add uarite
 ```
-
-## Usage
 
 ```python
 from uarite import uaparse
